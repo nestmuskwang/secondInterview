@@ -6,7 +6,6 @@ package com.atguigu.cloud.interview.com.atguigu.cloud.interview.jvm;
  */
 public class T1 {
     volatile  int n = 0;
-
     public void add(){
         n ++;
     }
