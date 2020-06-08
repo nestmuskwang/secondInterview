@@ -37,9 +37,9 @@ class MyData{
  *
  */
 public class VolatileDemo {
-    public static void main(String[] args) {
-        MyData myData = new MyData();
-        for (int i = 0; i < 20 ; i++) {
+    public static void main(String[] args)   {
+        MyData myData = new MyData ();
+        for (int i = 0; i < 30 ; i++) {
             new Thread(() -> {
                 for (int j = 0; j <1000 ; j++) {
                     myData.addPlusPlus();
