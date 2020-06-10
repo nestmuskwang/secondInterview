@@ -3,7 +3,6 @@ package com.atguigu.cloud.interview.com.atguigu.cloud.interview.jvm;
 import org.aspectj.weaver.ast.Var;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.atomic.AtomicStampedReference;
@@ -17,7 +16,7 @@ public class ABADemo {
     static AtomicReference<Integer> atomicReference = new AtomicReference<>(100);
     static  AtomicStampedReference<Integer> atomicStampedReference = new AtomicStampedReference<Integer>(100,1);
     public static void main(String[] args) {
-        Map<Object, Object> objectObjectMap = new HashMap<>();
+        HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
         new Thread(() -> {
             atomicReference.compareAndSet(100,101);
             atomicReference.compareAndSet(101,100);
