@@ -16,8 +16,13 @@ public class CASDemo {
      *
      *   CAS全程 compare-and-swap 是一条cpu并发原语
      *   并发原语的执行必须是连续的 ， 在执行过程中不允许被中断， 也就是说CAS是一条原子指令
-     *  为什么不用synchronized  ： 加锁会解决问题但是会降低并发性
+     *  为什么不用synchronized  ： 加锁会解决问题但是会降低并发性 一致性保证， 并发性下降
+     *  CAS 原理 Unsafe 类 + CAS思想（自旋）
+     *  CAS 缺点 1. 循环时间长，开销大
+     *    2.只能保证一个共享变量的原子操作 ， 3. ABA问题 但是并不影响数据的一致性（有些业务可以忽略这个问题）
+     *       解决该问题 可以引入版本号机制
      *
+     *   AtomicInteger 原子更新引入 -> 如何规避ABA问题
      */
 
     public static void main(String[] args) {
