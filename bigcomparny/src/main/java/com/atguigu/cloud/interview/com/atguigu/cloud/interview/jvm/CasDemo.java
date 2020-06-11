@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author ：wangsg
  * @date ： 2020/6/8 22:01
  */
-public class CASDemo {
+public class CasDemo {
     /**cas 比较并交换 capareAndSet
      *   底层原理 1.1 自旋锁
      *           1.2 unsafe 类 sun.misc包下的   rt.jar包里边 大部分都是native方法
