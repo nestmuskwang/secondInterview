@@ -4,6 +4,7 @@ import cn.hutool.core.collection.ConcurrentHashSet;
 
 import javax.sound.midi.Soundbank;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArraySet;
 
@@ -14,6 +15,18 @@ import java.util.concurrent.CopyOnWriteArraySet;
 public class ContainerNotSafeDemo {
     public static void main(String[] args) {
         //Set<String> set = new HashSet<>();
+        Map<String,String> map = new ConcurrentHashMap<>( );
+        for (int i = 0; i < 30; i++) {
+            new Thread(()->{
+                map.put(UUID.randomUUID().toString().substring(0,8),"ss");
+                System.out.println(map);
+            },String.valueOf(i)).start();
+        }
+        /**
+         * CopyOnWriteArraySet CopyOnWriteArraylist()
+         */
+    }
+    public static void  ListNotSafe(){
         Set<String> set = new CopyOnWriteArraySet<>();
         for (int i = 0; i < 30; i++) {
             new Thread(()->{
@@ -24,8 +37,7 @@ public class ContainerNotSafeDemo {
         /**
          * CopyOnWriteArraySet CopyOnWriteArraylist()
          */
-    }
-    public static void  ListNotSafe(){
+
         //List<String> list1 = Arrays.asList("a","b","c","d");
         List<String> list = new CopyOnWriteArrayList<>();
 
