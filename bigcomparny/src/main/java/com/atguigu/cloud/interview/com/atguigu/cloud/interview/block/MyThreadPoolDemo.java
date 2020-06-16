@@ -18,17 +18,27 @@ import java.util.concurrent.*;
  *  拒绝策略
  *  abortPolicy Discard callerRuns  disCardOldest
  * collection collections 工具类
+ *
+ * 最大线程数  cpu密集型  cup内核数+ 1
+ *
+ * io密集型  1.1  cpu * 2
+ *           1.2 cup数量/1 - 阻塞系数     阻塞系数 0.8--0.9 之间
  */
 public class MyThreadPoolDemo {
     public static void main(String[] args) {
         //一池4个固定线程
-        ExecutorService threadPoll = new ThreadPoolExecutor(2, 5, 2L, TimeUnit.SECONDS,
+        int  maxvalue = (int) (Runtime.getRuntime().availableProcessors()/(1-0.9));
+        System.out.println(maxvalue);
+        ExecutorService threadPoll = new ThreadPoolExecutor(2,
+                 maxvalue,
+                2L,
+                TimeUnit.SECONDS,
                 new LinkedBlockingDeque<>(3),
                 Executors.defaultThreadFactory(),
                 new ThreadPoolExecutor.CallerRunsPolicy());
 
         try {
-            for (int i = 1; i <=10; i++) {
+            for (int i = 1; i <=100; i++) {
                 threadPoll.execute(()->{
                     System.out.println(Thread.currentThread().getName() +"\t");
                 });

@@ -27,6 +27,7 @@ class  MyThread implements Callable<Integer>{
  */
 public class CallableDemo {
     public static void main(String[] args) throws Exception{
+        System.out.println(System.getProperties());
         FutureTask<Integer> futureTask = new FutureTask<>(new MyThread());
         FutureTask<Integer> futureTask2 = new FutureTask<>(new MyThread());
 
